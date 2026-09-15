@@ -16,12 +16,57 @@
 <meta name="twitter:description" content="Elektronická vizitka Martiny Kusýnové – SIRIUS FINANCE">
 <meta name="twitter:image" content="https://sirius-finance-cz.github.io/martina-kusynova/preview.png">
 <link rel="canonical" href="https://sirius-finance-cz.github.io/martina-kusynova/">
+
 <style>
-html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff}
-iframe{display:block;width:100%;height:100%;border:0}
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background: #fff;
+}
+
+#stage {
+    position: absolute;
+    width: 1774px;
+    height: 887px;
+    left: 50%;
+    top: 0;
+    transform-origin: top center;
+}
+
+#stage iframe {
+    display: block;
+    width: 1774px;
+    height: 887px;
+    border: 0;
+}
 </style>
 </head>
+
 <body>
-<iframe title="Elektronická vizitka Martiny Kusýnové" src="publication-web-resources/html/publication.html"></iframe>
+<div id="stage">
+    <iframe title="Elektronická vizitka Martiny Kusýnové"
+            src="publication-web-resources/html/publication.html"></iframe>
+</div>
+
+<script>
+(function () {
+    const DESIGN_WIDTH = 1774;
+    const DESIGN_HEIGHT = 887;
+    const stage = document.getElementById('stage');
+
+    function resizeCard() {
+        const scale = Math.min(1, window.innerWidth / DESIGN_WIDTH);
+        stage.style.transform = 'translateX(-50%) scale(' + scale + ')';
+        document.body.style.height = (DESIGN_HEIGHT * scale) + 'px';
+    }
+
+    window.addEventListener('resize', resizeCard);
+    window.addEventListener('orientationchange', resizeCard);
+    resizeCard();
+})();
+</script>
 </body>
 </html>
